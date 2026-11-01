@@ -1,0 +1,305 @@
+/**
+ * Teknacity Labs — global design tokens.
+ *
+ * Semantic variables (--color-bg, --color-fg, ...) are the public API the rest
+ * of the app consumes. They are aliased to Tailwind `@theme` keys at the bottom
+ * of this file so utilities such as `bg-bg` / `text-fg` / `border-line` work
+ * unchanged in both themes.
+ *
+ * Theme switching: set `data-theme="light"` or `data-theme="dark"` on <html>.
+ * With no attribute the system preference decides (see base.css).
+ */
+
+/* ---------------------------------------------------------------- Palette --
+ * Raw, non-semantic ramps. Do not use these directly in components.
+ */
+
+:root {
+  /* Warm off-white family */
+  --warm-50: #fbfaf7;
+  --warm-100: #f6f4ef;
+  --warm-200: #ece9e1;
+  --warm-300: #ddd9cf;
+
+  /* Graphite / charcoal family */
+  --graphite-500: #4a4d55;
+  --graphite-700: #2a2c31;
+  --graphite-800: #1d1f23;
+  --graphite-900: #14161a;
+  --graphite-950: #0d0e11;
+
+  /* Silver / neutral family */
+  --silver-300: #c9ccd2;
+  --silver-400: #a8adb6;
+  --silver-500: #8b9099;
+  --silver-600: #6b7078;
+
+  /* Ink */
+  --ink-900: #15161a;
+  --ink-950: #0a0b0d;
+}
+
+/* ------------------------------------------------------------- Typography --
+ * Sizes are a modest Swiss scale: tight display leading, relaxed body leading.
+ */
+
+:root {
+  --font-display:
+    "Inter Tight", "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    sans-serif;
+  --font-sans:
+    "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --text-2xs: 0.6875rem; /* 11px — uppercase micro labels */
+  --text-xs: 0.75rem; /* 12px */
+  --text-sm: 0.875rem; /* 14px */
+  --text-base: 1rem; /* 16px */
+  --text-lg: 1.125rem; /* 18px */
+  --text-xl: 1.375rem; /* 22px */
+  --text-2xl: 1.75rem; /* 28px */
+  --text-3xl: 2.25rem; /* 36px */
+  --text-4xl: 3rem; /* 48px */
+  --text-5xl: 4rem; /* 64px */
+  --text-6xl: 5.25rem; /* 84px — editorial headlines */
+
+  --leading-tight: 1.05;
+  --leading-snug: 1.2;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.65;
+
+  --tracking-tightest: -0.04em;
+  --tracking-tight: -0.02em;
+  --tracking-normal: 0em;
+  --tracking-wide: 0.04em;
+  --tracking-label: 0.14em; /* small uppercase labels */
+
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+}
+
+/* ---------------------------------------------------------------- Spacing --
+ * 8px geometric grid with a couple of half steps for tight UI.
+ */
+
+:root {
+  --space-0: 0;
+  --space-0-5: 0.25rem; /* 4px */
+  --space-1: 0.5rem; /* 8px */
+  --space-1-5: 0.75rem; /* 12px */
+  --space-2: 1rem; /* 16px */
+  --space-3: 1.5rem; /* 24px */
+  --space-4: 2rem; /* 32px */
+  --space-5: 2.5rem; /* 40px */
+  --space-6: 3rem; /* 48px */
+  --space-8: 4rem; /* 64px */
+  --space-10: 5rem; /* 80px */
+  --space-12: 6rem; /* 96px */
+  --space-16: 8rem; /* 128px */
+
+  --page-gutter: clamp(1.25rem, 4vw, 4rem);
+  --content-max: 78rem; /* 1248px */
+  --content-prose: 42rem;
+}
+
+/* ----------------------------------------------------------- Border radius --
+ * Major visual containers use 20–32px corners.
+ */
+
+:root {
+  --radius-xs: 0.375rem; /* 6px */
+  --radius-sm: 0.5rem; /* 8px */
+  --radius-md: 0.75rem; /* 12px */
+  --radius-lg: 1rem; /* 16px */
+  --radius-panel: 1.25rem; /* 20px — cards, panels */
+  --radius-xl: 1.5rem; /* 24px */
+  --radius-2xl: 1.75rem; /* 28px */
+  --radius-container: 2rem; /* 32px — section shells */
+  --radius-pill: 999px;
+}
+
+/* -------------------------------------------------------------- Transitions --
+ */
+
+:root {
+  --duration-fast: 120ms;
+  --duration-base: 220ms;
+  --duration-slow: 420ms;
+  --duration-slower: 800ms;
+
+  --ease-swiss: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-inout: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --transition-base:
+    color var(--duration-base) var(--ease-swiss),
+    background-color var(--duration-base) var(--ease-swiss),
+    border-color var(--duration-base) var(--ease-swiss),
+    box-shadow var(--duration-base) var(--ease-swiss),
+    opacity var(--duration-base) var(--ease-swiss);
+  --transition-transform: transform var(--duration-base) var(--ease-swiss);
+}
+
+/* ---------------------------------------------------------- Theme: light --
+ * Warm off-white / graphite black / silver grey / soft neutral borders.
+ */
+
+:root,
+[data-theme="light"] {
+  color-scheme: light;
+
+  --theme-bg: var(--warm-100);
+  --theme-bg-subtle: var(--warm-50);
+  --theme-bg-sunken: var(--warm-200);
+  --theme-surface: #ffffff;
+  --theme-surface-raised: var(--warm-50);
+
+  --theme-fg: var(--ink-900);
+  --theme-fg-muted: var(--graphite-500);
+  --theme-fg-subtle: var(--silver-600);
+  --theme-fg-inverse: var(--warm-50);
+
+  --theme-border: #e2ded4; /* soft neutral */
+  --theme-border-strong: var(--silver-300);
+
+  --theme-accent: var(--graphite-900);
+  --theme-accent-fg: var(--warm-50);
+
+  --theme-silver: var(--silver-400);
+  --theme-focus: var(--graphite-900);
+
+  --color-bg: var(--theme-bg);
+  --color-bg-subtle: var(--theme-bg-subtle);
+  --color-bg-sunken: var(--theme-bg-sunken);
+  --color-surface: var(--theme-surface);
+  --color-surface-raised: var(--theme-surface-raised);
+
+  --color-fg: var(--theme-fg);
+  --color-fg-muted: var(--theme-fg-muted);
+  --color-fg-subtle: var(--theme-fg-subtle);
+  --color-fg-inverse: var(--theme-fg-inverse);
+
+  --color-border: var(--theme-border);
+  --color-border-strong: var(--theme-border-strong);
+
+  --color-accent: var(--theme-accent);
+  --color-accent-fg: var(--theme-accent-fg);
+
+  --color-silver: var(--theme-silver);
+  --color-focus: var(--theme-focus);
+
+  /* Metallic hairline: silver sheen used on dividers and container edges. */
+  --line-metallic: linear-gradient(
+    90deg,
+    transparent,
+    var(--silver-400),
+    transparent
+  );
+
+  --shadow-xs: 0 1px 2px rgb(20 22 26 / 0.05);
+  --shadow-sm:
+    0 2px 8px -2px rgb(20 22 26 / 0.08), 0 1px 2px rgb(20 22 26 / 0.04);
+  --shadow-md:
+    0 12px 32px -12px rgb(20 22 26 / 0.14), 0 2px 6px -2px rgb(20 22 26 / 0.06);
+  --shadow-lg:
+    0 32px 64px -24px rgb(20 22 26 / 0.18), 0 4px 12px -4px rgb(20 22 26 / 0.06);
+  --shadow-inset: inset 0 1px 0 rgb(255 255 255 / 0.7);
+  --shadow-glow: 0 0 0 1px rgb(20 22 26 / 0.04);
+}
+
+/* ----------------------------------------------------------- Theme: dark --
+ * Deep graphite / charcoal / soft white / metallic silver.
+ */
+
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --theme-bg: var(--graphite-950);
+  --theme-bg-subtle: var(--graphite-900);
+  --theme-bg-sunken: var(--ink-950);
+  --theme-surface: var(--graphite-900);
+  --theme-surface-raised: var(--graphite-800);
+
+  --theme-fg: #f4f3ef; /* soft white */
+  --theme-fg-muted: var(--silver-400);
+  --theme-fg-subtle: var(--silver-500);
+  --theme-fg-inverse: var(--graphite-950);
+
+  --theme-border: #26282e; /* charcoal hairline */
+  --theme-border-strong: var(--graphite-500);
+
+  --theme-accent: #f4f3ef;
+  --theme-accent-fg: var(--graphite-950);
+
+  --theme-silver: var(--silver-300);
+  --theme-focus: var(--silver-300);
+
+  --color-bg: var(--theme-bg);
+  --color-bg-subtle: var(--theme-bg-subtle);
+  --color-bg-sunken: var(--theme-bg-sunken);
+  --color-surface: var(--theme-surface);
+  --color-surface-raised: var(--theme-surface-raised);
+
+  --color-fg: var(--theme-fg);
+  --color-fg-muted: var(--theme-fg-muted);
+  --color-fg-subtle: var(--theme-fg-subtle);
+  --color-fg-inverse: var(--theme-fg-inverse);
+
+  --color-border: var(--theme-border);
+  --color-border-strong: var(--theme-border-strong);
+
+  --color-accent: var(--theme-accent);
+  --color-accent-fg: var(--theme-accent-fg);
+
+  --color-silver: var(--theme-silver);
+  --color-focus: var(--theme-focus);
+
+  --line-metallic: linear-gradient(
+    90deg,
+    transparent,
+    var(--silver-500),
+    transparent
+  );
+
+  --shadow-xs: 0 1px 2px rgb(0 0 0 / 0.4);
+  --shadow-sm: 0 2px 10px -2px rgb(0 0 0 / 0.5), 0 1px 2px rgb(0 0 0 / 0.3);
+  --shadow-md:
+    0 16px 40px -16px rgb(0 0 0 / 0.65), 0 2px 8px -2px rgb(0 0 0 / 0.4);
+  --shadow-lg:
+    0 40px 80px -32px rgb(0 0 0 / 0.75), 0 6px 16px -6px rgb(0 0 0 / 0.45);
+  --shadow-inset: inset 0 1px 0 rgb(255 255 255 / 0.05);
+  --shadow-glow:
+    0 0 0 1px rgb(255 255 255 / 0.04), 0 0 32px -8px rgb(201 204 210 / 0.18);
+}
+
+/* -------------------------------------------------- Tailwind theme bridge --
+ * Exposes the semantic tokens as Tailwind utilities (bg-bg, text-fg, ...).
+ *
+ * The `@theme` block must reference a separate theme variable namespace so the
+ * utility classes follow the current `data-theme` and do not collapse to static
+ * values.
+ */
+
+@theme {
+  --color-bg: var(--theme-bg);
+  --color-bg-subtle: var(--theme-bg-subtle);
+  --color-bg-sunken: var(--theme-bg-sunken);
+  --color-surface: var(--theme-surface);
+  --color-surface-raised: var(--theme-surface-raised);
+
+  --color-fg: var(--theme-fg);
+  --color-fg-muted: var(--theme-fg-muted);
+  --color-fg-subtle: var(--theme-fg-subtle);
+  --color-fg-inverse: var(--theme-fg-inverse);
+
+  --color-border: var(--theme-border);
+  --color-border-strong: var(--theme-border-strong);
+
+  --color-accent: var(--theme-accent);
+  --color-accent-fg: var(--theme-accent-fg);
+
+  --color-silver: var(--theme-silver);
+  --color-focus: var(--theme-focus);
+}

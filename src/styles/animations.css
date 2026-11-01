@@ -1,0 +1,49 @@
+@reference './globals.css';
+
+/* Shared motion primitives. All respect prefers-reduced-motion via base.css. */
+
+@keyframes th-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(var(--space-1));
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes th-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes th-sheen {
+  from {
+    background-position: 0% 50%;
+  }
+  to {
+    background-position: 200% 50%;
+  }
+}
+
+@layer components {
+  .th-animate-fade-up {
+    animation: th-fade-up var(--duration-slow) var(--ease-out) both;
+  }
+
+  .th-animate-fade-in {
+    animation: th-fade-in var(--duration-slow) var(--ease-out) both;
+  }
+
+  /* Subtle metallic sweep for accents and loading states. */
+  .th-animate-sheen {
+    background-image: var(--line-metallic);
+    background-size: 200% 100%;
+    animation: th-sheen var(--duration-slower) var(--ease-inout) infinite alternate;
+  }
+}

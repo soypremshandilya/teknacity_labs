@@ -1,0 +1,71 @@
+@reference './globals.css';
+
+/* Reusable layout primitives. Page sections opt into these later. */
+
+@layer components {
+  /* Centred page gutter shared by every section. */
+  .th-shell {
+    display: block;
+    width: min(100%, var(--content-max));
+    max-width: calc(100vw - (var(--page-gutter) * 2));
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: var(--page-gutter);
+    padding-right: var(--page-gutter);
+    box-sizing: border-box;
+  }
+
+  /* Major visual container: 20–32px corners, hairline border, themed shadow. */
+  .th-container {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-container);
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition-base);
+  }
+
+  .th-panel {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-panel);
+    box-shadow: var(--shadow-xs);
+    transition: var(--transition-base);
+  }
+
+  /* Metallic divider — silver sheen, adapts per theme. */
+  .th-rule {
+    height: 1px;
+    width: 100%;
+    border: 0;
+    background-image: var(--line-metallic);
+  }
+
+  /* Uppercase kicker above headlines. */
+  .th-eyebrow {
+    display: inline-block;
+    font-size: var(--text-2xs);
+    font-weight: var(--weight-medium);
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+    color: var(--color-fg-subtle);
+  }
+
+  /* Editorial headline treatment for display type. */
+  .th-display {
+    font-family: var(--font-display);
+    font-weight: var(--weight-bold);
+    line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-tightest);
+    color: var(--color-fg);
+    text-wrap: balance;
+  }
+
+  /* Measure-limited body copy. */
+  .th-prose {
+    max-width: var(--content-prose);
+    margin-block: 0.875rem 1rem;
+    line-height: var(--leading-relaxed);
+    color: var(--color-fg-muted);
+    text-wrap: pretty;
+  }
+}
